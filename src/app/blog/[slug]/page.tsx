@@ -1,88 +1,55 @@
 // src/app/blog/[slug]/page.tsx
+import { client } from "@/sanity/lib/client";
+import { PortableText } from "@portabletext/react";
+import Image from "next/image";
+import { groq } from "next-sanity";
 
-import { client } from '@/lib/sanity';
-import { groq } from 'next-sanity';
-import { notFound } from 'next/navigation';
-
-type BlogPost = {
-  _id: string;
-  _createdAt: Date;
-  title: string;
-  slug: {
-    current: string;
-  };
-  author: {
-    name: string;
-  };
-  mainImage: {
-    asset: {
-      url: string;
-    };
-  };
-  body: any;
-};
-
-type PageProps = {
+type Props = {
   params: {
     slug: string;
   };
 };
 
+async function getPost(slug: string) {
+  const query = groq`*[_type == "post" && slug.current == $slug][0] {
+    _id,
+    title,
+    mainImage,
+    body
+  }`;
+  const post = await client.fetch(query, { slug });
+  return post;
+}
+
 export async function generateStaticParams() {
-  const query = groq`*[_type == "post"]{
-    slug
+  const query = groq`*[_type == "post"] {
+    "slug": slug.current
   }`;
 
-  const slugs: { slug: { current: string } }[] = await client.fetch(query);
-  return slugs.map(post => ({
-    slug: post.slug.current,
+  const slugs: { slug: string }[] = await client.fetch(query);
+  return slugs.map((slugObj) => ({
+    slug: slugObj.slug,
   }));
 }
 
-export default async function Page({ params }: PageProps) {
-  const query = groq`
-    *[_type == "post" && slug.current == $slug][0] {
-      _id,
-      _createdAt,
-      title,
-      author -> {
-        name
-      },
-      mainImage {
-        asset -> {
-          url
-        }
-      },
-      body,
-      slug
-    }
-  `;
+export default async function BlogPost({ params }: Props) {
+  const post = await getPost(params.slug);
 
-  const post: BlogPost | null = await client.fetch(query, {
-    slug: params.slug,
-  });
-
-  if (!post) {
-    notFound();
-  }
+  if (!post) return <div>Post not found</div>;
 
   return (
-    <article className="px-4 py-8 max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-      <p className="text-sm text-gray-600 mb-2">
-        Published on {new Date(post._createdAt).toLocaleDateString()} by {post.author?.name}
-      </p>
-      {post.mainImage?.asset?.url && (
-        <img
-          src={post.mainImage.asset.url}
+      {post.mainImage && (
+        <Image
+          src={post.mainImage}
           alt={post.title}
-          className="w-full h-auto rounded mb-6"
+          width={800}
+          height={400}
+          className="rounded-lg mb-4"
         />
       )}
-      <div>
-        {/* You can replace this with PortableText rendering if needed */}
-        <pre>{JSON.stringify(post.body, null, 2)}</pre>
-      </div>
-    </article>
+      <PortableText value={post.body} />
+    </div>
   );
 }
