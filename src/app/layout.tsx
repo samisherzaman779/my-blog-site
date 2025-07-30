@@ -52,7 +52,7 @@ export default function RootLayout({
       >
         <Header />
         <main className="min-h-screen">{children}</main>
-        <GoogleAnalytics GA_ID="G-XXXXXXXXXX" /> {/* Apna GA ID yahan */}
+        <GoogleAnalytics GA_ID="G-C8NZ31ER9B" /> {/* Apna GA ID yahan */}
         <Chatbot />
         <Footer />
       </body>
