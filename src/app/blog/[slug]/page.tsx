@@ -4,10 +4,8 @@ import { groq } from 'next-sanity';
 import { PortableText } from '@portabletext/react';
 import { notFound } from 'next/navigation';
 
-// revalidation time for ISR
 export const revalidate = 60;
 
-// GROQ query to get a blog post by slug
 const query = groq`
   *[_type == "post" && slug.current == $slug][0]{
     title,
@@ -16,11 +14,14 @@ const query = groq`
   }
 `;
 
-// Properly typed params directly in the function
+type BlogPostParams = {
+  slug: string;
+};
+
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: BlogPostParams;
 }) {
   const post = await client.fetch(query, { slug: params.slug });
 
