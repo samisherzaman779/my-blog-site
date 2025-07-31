@@ -15,7 +15,13 @@ const query = groq`
   }
 `;
 
-export default async function Page({ params }: { params: { slug: string } }) {
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function Page({ params }: Props) {
   const post = await client.fetch(query, { slug: params.slug });
 
   if (!post) return notFound();

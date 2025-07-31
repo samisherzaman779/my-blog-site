@@ -32,10 +32,10 @@ export default function Hero() {
           {/* Right Image */}
           <div className="flex-1 ml-60 mt-8 md:mt-0">
             <Image
-            src="/assets/hero-bg.png"
+            src="/assets/AI-Advancements-to-Expect-in-the-Next-10-Years-scaled.jpeg"
             alt="Web Development"
             className="rounded-xl shadow-lg"
-            width={400} height={550}/>
+            width={1000} height={1000}/>
           </div>
         </div>
       </section>
