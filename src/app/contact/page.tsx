@@ -49,7 +49,7 @@ export default function ContactPage() {
         Have a project idea? Fill the form below, and I&apos;ll get back to you.
       </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-xl shadow-lg">
+      <form onSubmit={handleSubmit} className="space-y-4 bg-gray-800 p-6 rounded-xl shadow-lg">
         <input
           type="text"
           name="name"
@@ -57,7 +57,7 @@ export default function ContactPage() {
           onChange={handleChange}
           placeholder="Your Name"
           required
-          className="w-full p-3 border rounded"
+          className="w-full p-3 border bg-gray-600 rounded"
         />
         <input
           type="email"
@@ -66,7 +66,7 @@ export default function ContactPage() {
           onChange={handleChange}
           placeholder="Your Email"
           required
-          className="w-full p-3 border rounded"
+          className="w-full p-3 border bg-gray-600 rounded"
         />
         <textarea
           name="message"
@@ -75,7 +75,7 @@ export default function ContactPage() {
           placeholder="Your Message"
           rows={5}
           required
-          className="w-full p-3 text-gray-900 border rounded"
+          className="w-full p-3 bg-gray-600 border rounded"
         />
         <button
           type="submit"
@@ -83,7 +83,7 @@ export default function ContactPage() {
         >
           {loading ? "Sending..." : "Send Message"}
         </button>
-        {success && <p className="text-center mt-4 text-green-600">{success}</p>}
+        {success && <p className="text-center text-bold mt-4 text-green-600">{success}</p>}
       </form>
     </section>
   );

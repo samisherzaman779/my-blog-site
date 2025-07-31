@@ -40,10 +40,10 @@ export default function Chatbot() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {isOpen ? (
-        <div className="w-[22rem] h-[30rem] md:w-96 md:h-[28rem] lg:w-[26rem] lg:h-[30rem] bg-white shadow-xl rounded-2xl flex flex-col overflow-hidden border border-gray-200">
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 flex justify-between items-center">
+        <div className="w-[26rem] h-[40rem] md:w-96 md:h-[28rem] lg:w-[26rem] lg:h-[30rem] bg-gray-400 shadow-xl rounded-2xl flex flex-col overflow-hidden border border-gray-200">
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-gray-200 p-4 flex justify-between items-center">
             <h4 className="font-semibold text-lg flex items-center gap-2">
-              <Bot size={18} /> AI Assistant
+              <Bot size={28} /> AI Assistant
             </h4>
             <button
               onClick={() => setIsOpen(false)}
@@ -52,7 +52,7 @@ export default function Chatbot() {
               <X size={20} />
             </button>
           </div>
-          <div className="flex-1 p-3 overflow-y-auto space-y-2 bg-gray-50">
+          <div className="flex-1 p-3 overflow-y-auto space-y-2 bg-gray-600">
             {messages.map((msg, i) => (
               <div
                 key={i}
