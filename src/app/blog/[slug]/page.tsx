@@ -1,19 +1,8 @@
-// app/blog/[slug]/page.tsx
-
-import { client } from '@/sanity/lib/client';
-import { groq } from 'next-sanity';
-import { PortableText } from '@portabletext/react';
-import { notFound } from 'next/navigation';
-
-export const revalidate = 60;
-
-const query = groq`
-  *[_type == "post" && slug.current == $slug][0]{
-    title,
-    body,
-    _createdAt
-  }
-`;
+// src/app/blog/[slug]/page.tsx
+import { client } from "@/sanity/lib/client";
+import { PortableText } from "@portabletext/react";
+import Image from "next/image";
+import { groq } from "next-sanity";
 
 type Props = {
   params: {
@@ -21,20 +10,46 @@ type Props = {
   };
 };
 
-export default async function Page({ params }: Props) {
-  const post = await client.fetch(query, { slug: params.slug });
+async function getPost(slug: string) {
+  const query = groq`*[_type == "post" && slug.current == $slug][0] {
+    _id,
+    title,
+    mainImage,
+    body
+  }`;
+  const post = await client.fetch(query, { slug });
+  return post;
+}
 
-  if (!post) return notFound();
+export async function generateStaticParams() {
+  const query = groq`*[_type == "post"] {
+    "slug": slug.current
+  }`;
+
+  const slugs: { slug: string }[] = await client.fetch(query);
+  return slugs.map((slugObj) => ({
+    slug: slugObj.slug,
+  }));
+}
+
+export default async function BlogPost({ params }: Props) {
+  const post = await getPost(params.slug);
+
+  if (!post) return <div>Post not found</div>;
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-      <p className="text-sm text-gray-500 mb-8">
-        Published on {new Date(post._createdAt).toLocaleDateString()}
-      </p>
-      <div className="prose dark:prose-invert">
-        <PortableText value={post.body} />
-      </div>
+    <div className="max-w-3xl mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+      {post.mainImage && (
+        <Image
+          src={post.mainImage}
+          alt={post.title}
+          width={800}
+          height={400}
+          className="rounded-lg mb-4"
+        />
+      )}
+      <PortableText value={post.body} />
     </div>
   );
 }

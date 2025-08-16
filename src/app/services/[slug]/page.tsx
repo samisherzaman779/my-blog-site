@@ -20,17 +20,17 @@ const servicesContent = {
     title: "Web Scraping",
     description: "Extract valuable data from any site...",
   },
-} as const; // <-- type safety ke liye const
+} as const;
 
 type ServiceKey = keyof typeof servicesContent;
 
-type Props = {
+interface PageProps {
   params: {
     slug: string;
   };
-};
+}
 
-export default function ServicePage({ params }: Props) {
+export default function ServicePage({ params }: PageProps) {
   const serviceKey = params.slug as ServiceKey;
   const service = servicesContent[serviceKey];
 
