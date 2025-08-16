@@ -27,18 +27,23 @@ export default async function BlogListPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-6">My Blog</h1>
-      <ul className="space-y-4">
-        {posts.map((post) => (
-          <li key={post.slug.current}>
-            <Link href={`/blog/${post.slug.current}`}>
-              <span className="text-xl text-blue-600 hover:underline">{post.title}</span>
-              <p className="text-sm text-gray-500">
-                {new Date(post._createdAt).toLocaleDateString()}
-              </p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+
+      {posts.length === 0 ? (
+        <p className="text-gray-500">No posts found.</p>
+      ) : (
+        <ul className="space-y-4">
+          {posts.map((post) => (
+            <li key={post.slug?.current}>
+              <Link href={`/blog/${post.slug?.current}`} className="block">
+                <h2 className="text-xl text-blue-600 hover:underline">{post.title}</h2>
+                <p className="text-sm text-gray-500">
+                  {new Date(post._createdAt).toLocaleDateString()}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

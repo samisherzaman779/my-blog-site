@@ -4,11 +4,11 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import { groq } from "next-sanity";
 
-type Props = {
+interface BlogPageProps {
   params: {
     slug: string;
   };
-};
+}
 
 async function getPost(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug][0] {
@@ -32,7 +32,16 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function BlogPost({ params }: Props) {
+// Optional: generateMetadata for better SEO
+export async function generateMetadata({ params }: BlogPageProps) {
+  const post = await getPost(params.slug);
+  return {
+    title: post ? post.title : "Blog Post",
+    description: post ? post.body?.[0]?.children?.[0]?.text || "" : "Blog post",
+  };
+}
+
+export default async function BlogPost({ params }: BlogPageProps) {
   const post = await getPost(params.slug);
 
   if (!post) return <div>Post not found</div>;

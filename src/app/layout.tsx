@@ -25,11 +25,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TechXiz Solutions | Web Development & AI Services",
     description: "Discover insights on web development and AI with TechXiz Solutions.",
-    url: "https://your-website-url.com",
+    url: "https://my-blog-site-lake.vercel.app/",
     siteName: "TechXiz Solutions",
     images: [
       {
-        url: "https://your-website-url.com/og-image.png",
+        url: "https://my-blog-site-lake.vercel.app/og-image.png",
         width: 800,
         height: 600,
         alt: "TechXiz Solutions",
