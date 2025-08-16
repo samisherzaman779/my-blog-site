@@ -38,12 +38,21 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 z-50">
       {isOpen ? (
-        <div className="w-[26rem] h-[40rem] md:w-96 md:h-[28rem] lg:w-[26rem] lg:h-[30rem] bg-gray-400 shadow-xl rounded-2xl flex flex-col overflow-hidden border border-gray-200">
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-gray-200 p-4 flex justify-between items-center">
-            <h4 className="font-semibold text-lg flex items-center gap-2">
-              <Bot size={28} /> AI Assistant
+        <div
+          className="
+            w-[95vw] h-[80vh]           /* mobile view */
+            sm:w-[28rem] sm:h-[32rem]   /* tablet view */
+            md:w-[24rem] md:h-[28rem]   /* medium screens */
+            lg:w-[26rem] lg:h-[30rem]   /* large screens */
+            bg-gray-400 shadow-2xl rounded-2xl flex flex-col overflow-hidden border border-gray-200 transition-all duration-300
+          "
+        >
+          {/* Header */}
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-gray-200 p-3 sm:p-4 flex justify-between items-center">
+            <h4 className="font-semibold text-base sm:text-lg flex items-center gap-2">
+              <Bot size={24} className="sm:size-6" /> AI Assistant
             </h4>
             <button
               onClick={() => setIsOpen(false)}
@@ -52,11 +61,13 @@ export default function Chatbot() {
               <X size={20} />
             </button>
           </div>
-          <div className="flex-1 p-3 overflow-y-auto space-y-2 bg-gray-600">
+
+          {/* Messages Area */}
+          <div className="flex-1 p-2 sm:p-3 overflow-y-auto space-y-2 bg-gray-600 scrollbar-thin scrollbar-thumb-gray-400">
             {messages.map((msg, i) => (
               <div
                 key={i}
-                className={`p-3 text-sm rounded-lg max-w-[75%] whitespace-pre-wrap ${
+                className={`px-3 py-2 text-sm sm:text-base rounded-lg max-w-[80%] whitespace-pre-wrap break-words ${
                   msg.sender === "user"
                     ? "bg-blue-300 ml-auto text-gray-800"
                     : "bg-gray-300 text-gray-800"
@@ -65,19 +76,21 @@ export default function Chatbot() {
                 {msg.text}
               </div>
             ))}
-            {loading && <p className="text-gray-400 text-xs italic">Bot is typing...</p>}
+            {loading && <p className="text-gray-300 text-xs italic">Bot is typing...</p>}
           </div>
-          <div className="p-3 border-t flex gap-2 bg-blue-100">
+
+          {/* Input Area */}
+          <div className="p-2 sm:p-3 border-t flex gap-2 bg-blue-100">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
               placeholder="Ask me anything..."
-              className="flex-1 text-black text-sm border border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 text-black text-sm sm:text-base border border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
               onClick={sendMessage}
-              className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 rounded-lg transition"
+              className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base px-4 rounded-lg transition shadow-md"
             >
               ➤
             </button>
