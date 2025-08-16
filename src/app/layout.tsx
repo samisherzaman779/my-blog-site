@@ -48,11 +48,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-gray-50 text-gray-900 ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`bg-gray-50 text-gray-900 scroll-smooth ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
         <main className="min-h-screen">{children}</main>
-        <GoogleAnalytics GA_ID="G-C8NZ31ER9B" /> {/* Apna GA ID yahan ad karein */}
+        <GoogleAnalytics NEXT_PUBLIC_GA_ID={process.env.NEXT_PUBLIC_GA_ID || "G-C8NZ31ER9B"} /> {/* Apna GA ID yahan ad karein */}
         <Chatbot />
         <Footer />
       </body>

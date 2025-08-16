@@ -27,7 +27,9 @@ export default function BlogSection() {
   return (
     <section className="w-full px-4 py-10 sm:px-8 lg:px-20 bg-white dark:bg-gray-900" id="blog">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold text-white mb-12">Latest Blogs</h2>
+      <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-12">
+        Latest Blogs
+      </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-600">
           {blogs.map((blog, index) => (
             <BlogCard

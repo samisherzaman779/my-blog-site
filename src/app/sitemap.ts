@@ -1,28 +1,30 @@
+// app/sitemap.ts
 import { MetadataRoute } from "next";
-import { client } from "@/lib/sanity";
+import { client } from "@/sanity/lib/client"; // ✅ fixed import path
+import { groq } from "next-sanity";
 
-
-// // ✅ Correct
-// interface ContactForm {
-//     name: string;
-//     email: string;
-//     message: string;
-//   }
-//   const data: ContactForm = await req.json();
-
+// Define type for blog
+type Blog = {
+  slug: string;
+  publishedAt: string;
+};
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const query = `*[_type == "post"]{ "slug": slug.current, publishedAt }`;
-  const blogs = await client.fetch(query);
+  const query = groq`*[_type == "post"]{ "slug": slug.current, publishedAt }`;
+  const blogs: Blog[] = await client.fetch(query);
 
   return [
     {
-      url: "https://your-website-url.com",
+      url: "https://my-blog-site-lake.vercel.app",
       lastModified: new Date(),
     },
-    ...blogs.map((blog: any) => ({
-      url: `https://your-website-url.com/blog/${blog.slug}`,
-      lastModified: new Date(blog.publishedAt),
-    })),
+    ...blogs
+      .filter((blog) => blog.slug) // ✅ ensure slug exists
+      .map((blog) => ({
+        url: `https://my-blog-site-lake.vercel.app/blog/${blog.slug}`,
+        lastModified: blog.publishedAt
+          ? new Date(blog.publishedAt)
+          : new Date(),
+      })),
   ];
 }

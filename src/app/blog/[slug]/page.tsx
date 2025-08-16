@@ -5,9 +5,7 @@ import Image from "next/image";
 import { groq } from "next-sanity";
 
 interface BlogPageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>; // 👈 Next.js 15: params is now a Promise
 }
 
 async function getPost(slug: string) {
@@ -32,17 +30,21 @@ export async function generateStaticParams() {
   }));
 }
 
-// Optional: generateMetadata for better SEO
+// ✅ generateMetadata fixed
 export async function generateMetadata({ params }: BlogPageProps) {
-  const post = await getPost(params.slug);
+  const { slug } = await params; // 👈 await params
+  const post = await getPost(slug);
+
   return {
     title: post ? post.title : "Blog Post",
     description: post ? post.body?.[0]?.children?.[0]?.text || "" : "Blog post",
   };
 }
 
+// ✅ BlogPost fixed
 export default async function BlogPost({ params }: BlogPageProps) {
-  const post = await getPost(params.slug);
+  const { slug } = await params; // 👈 await params
+  const post = await getPost(slug);
 
   if (!post) return <div>Post not found</div>;
 
