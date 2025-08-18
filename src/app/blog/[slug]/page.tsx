@@ -5,34 +5,30 @@ import Image from "next/image";
 import { groq } from "next-sanity";
 
 interface BlogPageProps {
-  params: Promise<{ slug: string }>; // 👈 Next.js 15: params is now a Promise
+  params: Promise<{ slug: string }>;
 }
 
 async function getPost(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug][0] {
     _id,
     title,
+    "slug": slug.current,
     mainImage,
-    body
+    body,
+    publishedAt
   }`;
-  const post = await client.fetch(query, { slug });
-  return post;
+  return client.fetch(query, { slug });
 }
 
 export async function generateStaticParams() {
-  const query = groq`*[_type == "post"] {
-    "slug": slug.current
-  }`;
-
+  const query = groq`*[_type == "post"]{ "slug": slug.current }`;
   const slugs: { slug: string }[] = await client.fetch(query);
-  return slugs.map((slugObj) => ({
-    slug: slugObj.slug,
-  }));
+
+  return slugs.map(({ slug }) => ({ slug }));
 }
 
-// ✅ generateMetadata fixed
 export async function generateMetadata({ params }: BlogPageProps) {
-  const { slug } = await params; // 👈 await params
+  const { slug } = await params; // ✅ FIX
   const post = await getPost(slug);
 
   return {
@@ -41,9 +37,8 @@ export async function generateMetadata({ params }: BlogPageProps) {
   };
 }
 
-// ✅ BlogPost fixed
 export default async function BlogPost({ params }: BlogPageProps) {
-  const { slug } = await params; // 👈 await params
+  const { slug } = await params; // ✅ FIX
   const post = await getPost(slug);
 
   if (!post) return <div>Post not found</div>;
