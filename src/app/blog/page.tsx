@@ -13,16 +13,16 @@ const query = groq`
   }
 `;
 
-type Post = {
-  title: string;
-  slug: {
+type SegmentParams = {
+  title?: string;
+  slug?: {
     current: string;
   };
   _createdAt: string;
 };
 
 export default async function BlogListPage() {
-  const posts: Post[] = await client.fetch(query);
+  const posts: SegmentParams[] = await client.fetch(query);
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">

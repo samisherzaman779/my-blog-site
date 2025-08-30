@@ -3,6 +3,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
+// ---- Match Next.js generated PageProps shape ----
+type RouteParams = { slug: string };
+type PageProps = {
+  params: Promise<RouteParams>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+};
+
 const servicesContent = {
   "ai-solutions": {
     title: "AI Solutions",
@@ -24,14 +31,9 @@ const servicesContent = {
 
 type ServiceKey = keyof typeof servicesContent;
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default function ServicePage({ params }: PageProps) {
-  const serviceKey = params.slug as ServiceKey;
+export default async function ServicePage({ params }: PageProps) {
+  const { slug } = await params; // 👈 await the Promise
+  const serviceKey = slug as ServiceKey;
   const service = servicesContent[serviceKey];
 
   if (!service) return notFound();
@@ -42,16 +44,10 @@ export default function ServicePage({ params }: PageProps) {
       <p className="mt-4 text-gray-600">{service.description}</p>
 
       <div className="mt-8 space-x-4">
-        <Link
-          href="/services/ai-solutions"
-          className="text-blue-600 hover:underline"
-        >
+        <Link href="/services/ai-solutions" className="text-blue-600 hover:underline">
           AI Solutions
         </Link>
-        <Link
-          href="/services/web-development"
-          className="text-blue-600 hover:underline"
-        >
+        <Link href="/services/web-development" className="text-blue-600 hover:underline">
           Web Development
         </Link>
       </div>

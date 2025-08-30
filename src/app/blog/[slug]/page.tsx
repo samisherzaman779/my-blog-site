@@ -4,15 +4,20 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import { groq } from "next-sanity";
 
-interface BlogPageProps {
-  params: Promise<{ slug: string }>;
-}
+// ---- Match Next.js generated PageProps shape ----
+type RouteParams = { slug: string };
+type PageProps = {
+  params: Promise<RouteParams>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+};
 
 async function getPost(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug][0] {
     _id,
     title,
     "slug": slug.current,
+    // NOTE: If using Sanity image object, you'll need a URL builder.
+    // For now assuming it's a URL string already:
     mainImage,
     body,
     publishedAt
@@ -23,12 +28,11 @@ async function getPost(slug: string) {
 export async function generateStaticParams() {
   const query = groq`*[_type == "post"]{ "slug": slug.current }`;
   const slugs: { slug: string }[] = await client.fetch(query);
-
   return slugs.map(({ slug }) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: BlogPageProps) {
-  const { slug } = await params; // ✅ FIX
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params; // 👈 await the Promise
   const post = await getPost(slug);
 
   return {
@@ -37,8 +41,8 @@ export async function generateMetadata({ params }: BlogPageProps) {
   };
 }
 
-export default async function BlogPost({ params }: BlogPageProps) {
-  const { slug } = await params; // ✅ FIX
+export default async function BlogPost({ params }: PageProps) {
+  const { slug } = await params; // 👈 await the Promise
   const post = await getPost(slug);
 
   if (!post) return <div>Post not found</div>;
@@ -46,6 +50,7 @@ export default async function BlogPost({ params }: BlogPageProps) {
   return (
     <div className="max-w-3xl mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+
       {post.mainImage && (
         <Image
           src={post.mainImage}
@@ -55,6 +60,7 @@ export default async function BlogPost({ params }: BlogPageProps) {
           className="rounded-lg mb-4"
         />
       )}
+
       <PortableText value={post.body} />
     </div>
   );
