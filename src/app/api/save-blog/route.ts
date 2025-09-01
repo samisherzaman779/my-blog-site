@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { writeClient } from "@/lib/sanity";
+import { client } from "@/sanity/lib/client";
 
 export async function POST(req: Request) {
   try {
@@ -11,7 +11,7 @@ export async function POST(req: Request) {
 
     const slug = title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
 
-    const newPost = await writeClient.create({
+    const newPost = await client.create({
       _type: "post",
       title,
       slug: { current: slug },
