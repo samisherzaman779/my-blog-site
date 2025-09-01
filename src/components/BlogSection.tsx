@@ -1,7 +1,6 @@
 import BlogCard from "./BlogCard";
 import Link from "next/link";
 
-
 const blogs = [
   {
     title: "Top 5 Web Development Trends in 2025",
@@ -21,16 +20,28 @@ const blogs = [
     date: "July 15, 2025",
     slug: "nextjs-15-features",
   },
-]
+];
 
 export default function BlogSection() {
   return (
-    <section className="w-full px-4 py-10 sm:px-8 lg:px-20 bg-white dark:bg-gray-900" id="blog">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-12">
-        Latest Blogs
-      </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-600">
+    <section
+      id="blog"
+      className="w-full px-4 py-12 sm:px-8 lg:px-20 bg-white dark:bg-gray-950 transition-colors duration-300"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        {/* Section Heading */}
+        {/* <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-12">
+          Latest Blogs
+        </h2> */}
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-12">
+          Latest{" "}
+          <span className="bg-gradient-to-r from-blue-500 to-indigo-600 text-transparent bg-clip-text">
+            Blogs
+          </span>
+        </h2>
+
+        {/* Blog Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogs.map((blog, index) => (
             <BlogCard
               key={index}
@@ -41,15 +52,17 @@ export default function BlogSection() {
             />
           ))}
         </div>
-        <div className="mt-8">
+
+        {/* View All Button */}
+        <div className="mt-10">
           <Link
             href="/blog"
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+            className="inline-block bg-indigo-600 dark:bg-indigo-500 text-white px-6 py-3 rounded-xl font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           >
             View All Blogs
           </Link>
         </div>
       </div>
     </section>
-  )
+  );
 }

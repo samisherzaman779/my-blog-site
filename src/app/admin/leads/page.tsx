@@ -1,4 +1,4 @@
-import { client } from "@/lib/sanity";
+import { client } from "@/sanity/lib/client";
 
 async function getLeads() {
   const query = `*[_type == "lead"] | order(createdAt desc) { name, email, message, createdAt }`;
