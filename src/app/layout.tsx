@@ -10,7 +10,7 @@ import { ThemeProvider } from "./providers";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "swap", // improves font loading
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@techxiz", // apna twitter handle yahan dal do agar hai
+    site: "@techxiz",
     creator: "@sami_sherzaman",
   },
   robots: {
@@ -65,8 +65,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 antialiased transition-colors duration-300 scroll-smooth">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable}`}
+    >
+      <body className="antialiased transition-colors duration-300 scroll-smooth">
         <ThemeProvider>
           <Header />
           <main id="main-content" className="min-h-screen">

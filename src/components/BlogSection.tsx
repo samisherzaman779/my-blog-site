@@ -26,7 +26,7 @@ export default function BlogSection() {
   return (
     <section
       id="blog"
-      className="w-full px-4 py-12 sm:px-8 lg:px-20 bg-white dark:bg-gray-950 transition-colors duration-300"
+      className="w-full px-4 py-12 sm:px-8 lg:px-20 bg-white dark:bg-gray-900 transition-colors duration-300"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Section Heading */}
