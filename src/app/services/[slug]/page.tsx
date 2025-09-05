@@ -1,56 +1,113 @@
 // src/app/services/[slug]/page.tsx
-
 import { notFound } from "next/navigation";
-// import Link from "next/link";
+import { CheckCircle2 } from "lucide-react";
 
-// ---- Match Next.js generated PageProps shape ----
-type RouteParams = { slug: string };
 type PageProps = {
-  params: Promise<RouteParams>;
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+  params: Promise<{ slug: string }>; // 👈 async params
 };
 
 const servicesContent = {
   "ai-solutions": {
     title: "AI Solutions",
-    description: "We offer cutting-edge AI services...",
+    description: `
+      Leverage Artificial Intelligence to transform your business. 
+      From chatbots and recommendation systems to predictive analytics, 
+      we create solutions that reduce costs, save time, and unlock growth.
+    `,
+    features: [
+      "AI chatbots for customer engagement & support",
+      "Machine learning models for business insights",
+      "Recommendation systems to boost conversions",
+      "AI-driven content generation & personalization",
+    ],
   },
   automation: {
     title: "Automation",
-    description: "Streamline your business operations...",
+    description: `
+      Eliminate repetitive tasks and streamline operations with smart automation. 
+      Our solutions integrate with your workflows, saving you time and reducing human error.
+    `,
+    features: [
+      "Business process automation (BPA)",
+      "Email, CRM, and social media automation",
+      "Custom workflow bots & scripts",
+      "Integration with third-party APIs & SaaS",
+    ],
   },
   "web-development": {
     title: "Web Development",
-    description: "We build responsive and modern websites...",
+    description: `
+      We build fast, secure, and scalable websites that work seamlessly across devices. 
+      Our solutions are designed to increase visibility, drive traffic, and enhance brand identity.
+    `,
+    features: [
+      "Responsive, mobile-first design",
+      "SEO-optimized architecture",
+      "E-commerce integration & payment gateways",
+      "Custom dashboards and API integrations",
+    ],
   },
   "web-scraping": {
     title: "Web Scraping",
-    description: "Extract valuable data from any site...",
+    description: `
+      Extract and organize large-scale data securely with our web scraping services. 
+      Perfect for market research, competitor analysis, and business intelligence.
+    `,
+    features: [
+      "E-commerce product & price monitoring",
+      "Competitor analysis & research data",
+      "Structured datasets for analytics",
+      "Lead generation from multiple sources",
+    ],
   },
 } as const;
 
-type ServiceKey = keyof typeof servicesContent;
-
 export default async function ServicePage({ params }: PageProps) {
-  const { slug } = await params; // 👈 await the Promise
-  const serviceKey = slug as ServiceKey;
-  const service = servicesContent[serviceKey];
+  // ✅ Await params
+  const { slug } = await params;
+
+  const service = servicesContent[slug as keyof typeof servicesContent];
 
   if (!service) return notFound();
 
   return (
-    <div className="px-6 py-10">
-      <h1 className="text-3xl font-bold">{service.title}</h1>
-      <p className="mt-4 text-gray-600">{service.description}</p>
+    <div className="max-w-4xl mx-auto px-6 py-12">
+      {/* Heading */}
+      <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
+        {service.title}
+      </h1>
 
-      {/* <div className="mt-8 space-x-4">
-        <Link href="/services/ai-solutions" className="text-blue-600 hover:underline">
-          AI Solutions
-        </Link>
-        <Link href="/services/web-development" className="text-blue-600 hover:underline">
-          Web Development
-        </Link>
-      </div> */}
+      {/* Subtitle */}
+      <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+        Discover how our {service.title.toLowerCase()} can empower your business.
+      </p>
+
+      {/* Description */}
+      <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+        {service.description}
+      </p>
+
+      {/* Features List */}
+      <ul className="space-y-4">
+        {service.features.map((item, idx) => (
+          <li key={idx} className="flex items-start gap-3">
+            <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 mt-1 flex-shrink-0" />
+            <span className="text-gray-800 dark:text-gray-200">{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* Call to Action */}
+      <div className="mt-10 p-6 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl shadow">
+        <h2 className="text-xl font-semibold text-indigo-700 dark:text-indigo-300 mb-2">
+          Ready to get started?
+        </h2>
+        <p className="text-gray-700 dark:text-gray-300">
+          Contact us today to explore how{" "}
+          <span className="font-medium">{service.title}</span> can transform
+          your business operations.
+        </p>
+      </div>
     </div>
   );
 }

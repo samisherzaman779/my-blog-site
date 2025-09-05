@@ -68,9 +68,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable}`}
-    >
-      <body className="antialiased transition-colors duration-300 scroll-smooth">
+      className={`${geistSans.variable} ${geistMono.variable} bg-white text-black dark:bg-gray-900 dark:text-white`}
+      >
+      <body className="antialiased transition-colors duration-300 scroll-smooth bg-white text-black dark:bg-gray-900 dark:text-white"
+      >
         <ThemeProvider>
           <Header />
           <main id="main-content" className="min-h-screen">
