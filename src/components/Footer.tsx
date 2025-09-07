@@ -39,7 +39,7 @@ export default function Footer() {
               className="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition"
               >LinkedIn
               </Link>
-              <Link href="https://twitter.com/" target="_blank"
+              <Link href="https://x.com/SamiSherzaman" target="_blank"
               className="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition"
               >Twitter
               </Link>
