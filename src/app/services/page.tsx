@@ -11,9 +11,9 @@ export default function ServicesPage() {
 
   return (
     <div className="max-w-6xl mx-auto py-12 px-6">
-      <h1 className="text-4xl font-bold mb-6 text-gray-800">Our Services</h1>
-      <p className="text-gray-600 mb-12">
-        At <span className="font-semibold">TechXiz-Solutions</span>, we provide cutting-edge services designed to
+      <h1 className="text-4xl font-bold mb-6 ">Our Services for Your Business</h1>
+      <p className="text-gray-500 mb-12">
+        At <span className="font-semibold text-blue-500">TechXiz-Solutions</span>, we provide cutting-edge services designed to
         help your business grow, scale, and stay ahead in the digital world.
       </p>
       <ul className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

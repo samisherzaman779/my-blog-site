@@ -26,14 +26,14 @@ export default function BlogSection() {
   return (
     <section
       id="blog"
-      className="w-full px-4 py-12 sm:px-8 lg:px-20 bg-white dark:bg-gray-900 transition-colors duration-300"
+      className="w-full px-4 py-12 sm:px-8 lg:px-20  transition-colors duration-300"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Section Heading */}
         {/* <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-12">
           Latest Blogs
         </h2> */}
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-12">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-12">
           Latest{" "}
           <span className="bg-gradient-to-r from-blue-500 to-indigo-600 text-transparent bg-clip-text">
             Blogs
@@ -41,8 +41,11 @@ export default function BlogSection() {
         </h2>
 
         {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogs.map((blog, index) => (
+            <div className=" border-3 border-gray-500 dark:border-gray-500 rounded-2xl "
+            key={index}
+            >
             <BlogCard
               key={index}
               title={blog.title}
@@ -50,6 +53,7 @@ export default function BlogSection() {
               date={blog.date}
               slug={blog.slug}
             />
+            </div>
           ))}
         </div>
 
@@ -57,7 +61,7 @@ export default function BlogSection() {
         <div className="mt-10">
           <Link
             href="/blog"
-            className="inline-block bg-indigo-600 dark:bg-indigo-500 text-white px-6 py-3 rounded-xl font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+            className="inline-block bg-indigo-600 dark:bg-indigo-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-indigo-800 dark:hover:bg-indigo-800 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           >
             View All Blogs
           </Link>

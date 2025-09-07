@@ -2,12 +2,12 @@ export default function WebDevelopmentPage() {
   return (
     <div className="min-h-screen p-6 max-w-4xl mx-auto">
       {/* Title */}
-      <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+      <h1 className="text-4xl font-bold mb-6 text-blue-700">
         Web Development Services
       </h1>
 
       {/* Intro */}
-      <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+      <p className=" mb-6 leading-relaxed">
         At <span className="font-semibold">TechXiz-Solutions</span>, we build modern, scalable, 
         and high-performing websites tailored to your brand and business goals. Whether it’s a 
         simple portfolio, a dynamic e-commerce store, or a complex web application, our team 
@@ -15,10 +15,10 @@ export default function WebDevelopmentPage() {
       </p>
 
       {/* Key Features */}
-      <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-semibold mt-8 mb-4">
         Key Features of Our Web Development Services
       </h2>
-      <ul className="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
+      <ul className="list-disc pl-6 space-y-3">
         <li>
           <span className="font-medium">Custom Website Design:</span> Unique and branded 
           websites that reflect your business identity.
@@ -46,14 +46,14 @@ export default function WebDevelopmentPage() {
       </ul>
 
       {/* Benefits */}
-      <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
         Why Choose Our Web Development?
       </h2>
-      <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+      <p className=" mb-4 leading-relaxed">
         A professionally developed website is more than just a digital space — it’s a 
         growth engine for your business. Here’s how we add value:
       </p>
-      <ul className="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
+      <ul className="list-disc pl-6 space-y-3">
         <li>Boost your online presence with responsive and interactive designs.</li>
         <li>Enhance customer engagement through intuitive user interfaces.</li>
         <li>Increase conversions with optimized user journeys and CTAs.</li>
@@ -62,10 +62,10 @@ export default function WebDevelopmentPage() {
       </ul>
 
       {/* Use Cases */}
-      <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
         Real-World Use Cases
       </h2>
-      <ul className="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
+      <ul className="list-disc pl-6 space-y-3 ">
         <li>
           <span className="font-medium">E-commerce Stores:</span> Fully functional online 
           shops with product catalogs, carts, and payment systems.
@@ -89,7 +89,7 @@ export default function WebDevelopmentPage() {
       </ul>
 
       {/* Closing */}
-      <p className="mt-10 text-gray-700 dark:text-gray-300 leading-relaxed">
+      <p className="mt-10 leading-relaxed">
         With a blend of creativity, strategy, and technology, we deliver websites that 
         don’t just look great but also drive measurable business results. Let us craft a 
         digital experience that works as hard as you do.

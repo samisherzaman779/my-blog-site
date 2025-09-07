@@ -73,17 +73,17 @@ export default async function ServicePage({ params }: PageProps) {
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       {/* Heading */}
-      <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
+      <h1 className="text-4xl font-extrabold mb-4 text-blue-700">
         {service.title}
       </h1>
 
       {/* Subtitle */}
-      <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+      <p className="text-lg mb-6">
         Discover how our {service.title.toLowerCase()} can empower your business.
       </p>
 
       {/* Description */}
-      <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      <p className=" leading-relaxed mb-8">
         {service.description}
       </p>
 
@@ -92,17 +92,17 @@ export default async function ServicePage({ params }: PageProps) {
         {service.features.map((item, idx) => (
           <li key={idx} className="flex items-start gap-3">
             <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 mt-1 flex-shrink-0" />
-            <span className="text-gray-800 dark:text-gray-200">{item}</span>
+            <span className="">{item}</span>
           </li>
         ))}
       </ul>
 
       {/* Call to Action */}
       <div className="mt-10 p-6 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl shadow">
-        <h2 className="text-xl font-semibold text-indigo-700 dark:text-indigo-300 mb-2">
+        <h2 className="text-xl font-semibold text-indigo-700 mb-2">
           Ready to get started?
         </h2>
-        <p className="text-gray-700 dark:text-gray-300">
+        <p className="">
           Contact us today to explore how{" "}
           <span className="font-medium">{service.title}</span> can transform
           your business operations.

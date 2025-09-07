@@ -1,11 +1,11 @@
 export default function AutomationPage() {
   return (
     <div className="min-h-screen p-6 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+      <h1 className="text-4xl font-bold mb-6 text-blue-700">
         Automation Services
       </h1>
 
-      <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+      <p className=" mb-6 leading-relaxed">
         At <span className="font-semibold">TechXiz-Solutions</span>, we empower businesses 
         with automation solutions that save time, reduce costs, and eliminate repetitive 
         manual tasks. By leveraging cutting-edge tools and workflows, we help your 
@@ -13,10 +13,10 @@ export default function AutomationPage() {
       </p>
 
       {/* Key Features */}
-      <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-semibold mt-8 mb-4">
         Key Features of Our Automation Services
       </h2>
-      <ul className="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
+      <ul className="list-disc pl-6 space-y-3">
         <li>
           <span className="font-medium">Business Process Automation (BPA):</span> Streamline 
           internal workflows, approvals, and data management with customized automation.
@@ -40,13 +40,13 @@ export default function AutomationPage() {
       </ul>
 
       {/* Benefits */}
-      <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
         Benefits for Your Business
       </h2>
-      <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+      <p className=" leading-relaxed mb-4">
         Our automation solutions are designed to deliver real, measurable outcomes:
       </p>
-      <ul className="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
+      <ul className="list-disc pl-6 space-y-3">
         <li>Save hours of manual work each week.</li>
         <li>Reduce human error with accurate automated processes.</li>
         <li>Increase team productivity and focus on high-value tasks.</li>
@@ -55,10 +55,10 @@ export default function AutomationPage() {
       </ul>
 
       {/* Use Cases */}
-      <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
         Real-World Use Cases
       </h2>
-      <ul className="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
+      <ul className="list-disc pl-6 space-y-3">
         <li>
           <span className="font-medium">E-commerce:</span> Automate order processing, 
           inventory management, and customer emails.
@@ -82,7 +82,7 @@ export default function AutomationPage() {
       </ul>
 
       {/* Closing Statement */}
-      <p className="mt-10 text-gray-700 dark:text-gray-300 leading-relaxed">
+      <p className="mt-10 leading-relaxed">
         With automation, your business can shift from managing repetitive tasks to focusing 
         on innovation, customer experience, and strategic growth. Let us design intelligent 
         workflows that scale with your ambitions.

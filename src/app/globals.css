@@ -7,10 +7,10 @@ body {
 
 /* Light mode styles */
 body {
-  @apply bg-white text-gray-900;
+  @apply bg-white/85 text-gray-900;
 }
 
 /* Dark mode styles */
 .dark body {
-  @apply bg-gray-950 text-gray-100;
+  @apply bg-gray-900 text-gray-100;
 }

@@ -1,11 +1,11 @@
 export default function AISolutionsPage() {
   return (
     <div className="min-h-screen p-6 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+      <h1 className="text-4xl font-bold mb-6 text-blue-700">
         AI Solutions Services
       </h1>
 
-      <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+      <p className=" mb-6 leading-relaxed">
         At <span className="font-semibold">TechXiz-Solutions</span>, we harness the
         transformative power of Artificial Intelligence (AI) to help businesses automate,
         innovate, and make smarter decisions. From predictive analytics to intelligent chatbots,
@@ -13,10 +13,10 @@ export default function AISolutionsPage() {
       </p>
 
       {/* Key Features */}
-      <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-semibold mt-8 mb-4">
         Key Features of Our AI Solutions
       </h2>
-      <ul className="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
+      <ul className="list-disc pl-6 space-y-3 ">
         <li>
           <span className="font-medium">AI Chatbots:</span> Automate customer support,
           generate leads, and provide 24/7 assistance using intelligent conversational bots.
@@ -40,14 +40,14 @@ export default function AISolutionsPage() {
       </ul>
 
       {/* Benefits */}
-      <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
         Benefits for Your Business
       </h2>
-      <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+      <p className=" leading-relaxed mb-4">
         Implementing AI solutions offers tangible advantages that can reshape the way your
         business operates:
       </p>
-      <ul className="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
+      <ul className="list-disc pl-6 space-y-3 ">
         <li>Save time and reduce operational costs through automation.</li>
         <li>Enhance customer engagement with personalized experiences.</li>
         <li>Boost sales by leveraging intelligent recommendation systems.</li>
@@ -56,10 +56,10 @@ export default function AISolutionsPage() {
       </ul>
 
       {/* Use Cases */}
-      <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
         Real-World Use Cases
       </h2>
-      <ul className="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
+      <ul className="list-disc pl-6 space-y-3 ">
         <li>
           <span className="font-medium">E-commerce:</span> Product recommendations and
           personalized shopping experiences.
@@ -83,7 +83,7 @@ export default function AISolutionsPage() {
       </ul>
 
       {/* Closing Statement */}
-      <p className="mt-10 text-gray-700 dark:text-gray-300 leading-relaxed">
+      <p className="mt-10 leading-relaxed">
         Our AI solutions are not just about technology — they are about transforming your
         business into a smarter, more efficient, and customer-centric enterprise. Let us help
         you stay competitive in the age of intelligent automation.
